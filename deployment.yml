@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sysutil-app
+  labels:
+    name: sysutil-deply
+    app: sysutil-app
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: sysutil-app
+      labels:
+        name: sysutil-pod
+        app: sysutil-app
+    spec:
+      containers:
+        - name: sysutil-iamge
+          image: abhishekbakare/sysutilapp:latest
+          ports:
+            - name: sysutil-port
+              port: 5001
+  selector:
+    matchLabels:
+      name: sysutil-pod
+      app: sysutil-app
